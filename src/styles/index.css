@@ -1,0 +1,1100 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Raleway", sans-serif;
+    background-color: black;
+    color: white;
+    transition: background-color 0.5s ease, color 0.5s ease;
+    overflow: hidden;
+}
+
+.line {
+    position: fixed;
+    top: 2.5vh;
+    left: 2.5vw;
+    right: 2.5vw;
+    bottom: 2.5vh;
+    border: 1px solid rgb(85, 85, 85);
+    box-sizing: border-box;
+    transition: border-color 0.5s ease;
+}
+
+.content {
+    position: relative;
+    padding: 5vh 3vw;
+    transition: color 0.5s ease;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.heading {
+    font-size: clamp(32px, 5vw, 60px);
+    font-weight: 200;
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    margin-bottom: 2vh;
+    padding-left: 0.5vw;
+}
+
+.text {
+    font-size: 14px;
+    font-family: "Raleway", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    padding-bottom: 3vh;
+    padding-left: 1vw;
+    transition: color 0.5s ease;
+}
+
+.link {
+    position: relative;
+    font-size: 13px;
+    font-family: "Raleway", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    display: inline-block;
+    margin: 1vh 0;
+    padding-left: 1vw;
+    color: white;
+    text-decoration: none;
+}
+
+.tab-content {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    bottom: 4.5vh;
+    right: 5vw;
+    left: auto;
+    font-family: "Raleway", sans-serif;
+    font-size: 14px;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    z-index: 999;
+    max-width: 90%;
+    overflow-y: auto;
+    max-height: 70vh;
+}
+
+@media (max-width: 1024px) {
+    .line {
+        top: 3.5vh;
+        left: 3.5vw;
+        right: 3.5vw;
+        bottom: 3.5vh;
+    }
+
+    .content {
+        padding: 6vh 6vw 10vh;
+    }
+
+    .tab-content {
+        right: 8vw;
+        left: 5%;
+        max-width: 800px;
+        max-height: 60vh;
+    }
+}
+
+.active-tab {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease;
+}
+
+.home_aboutme {
+    line-height: 1.5em;
+    text-align: justify;
+}
+
+@media (max-width: 480px) {
+  .home_aboutme {
+    font-size: 12px;
+  }
+}
+
+.home_aboutme span {
+    display: block;
+}
+
+.bottom-text {
+    position: fixed;
+    bottom: 1.25vh;
+    right: 2.5vw;
+    font-size: 14px;
+    color: #666;
+}
+
+.dot {
+    display: none;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 85px;
+    transform: translateY(-50%);
+}
+
+#shaderCanvas {
+    display: block;
+    position: fixed;
+    top: 2.5vh;
+    left: 2.5vw;
+    right: 2.5vw;
+    bottom: 2.5vh;
+    width: calc(100% - 5vw);
+    height: calc(100% - 5vh);
+    z-index: -1;
+}
+
+@media (max-width: 1024px) {
+    #shaderCanvas {
+        top: 3.5vh;
+        left: 3.5vw;
+        right: 3.5vw;
+        bottom: 3.5vh;
+        width: calc(100% - 7vw);
+        height: calc(100% - 7vh);
+    }
+
+    .bottom-text {
+        right: 4vw;
+        font-size: 14px;
+    }
+}
+
+
+.dark-mode {
+    background-color: white;
+    color: black;
+}
+
+.dark-mode .content,
+.dark-mode .link,
+.dark-mode .tab-content {
+    color: inherit;
+}
+
+.dark-mode .line {
+    border: 1px solid rgb(170, 170, 170);
+}
+
+.dark-mode .dot {
+    background-color: black;
+}
+
+
+.intro-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeInOut 3s ease forwards;
+    z-index: 1000;
+    flex-direction: column;
+}
+
+.intro-screen h1 {
+    font-weight: 100;
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    color: white;
+    font-size: clamp(1.5em, 5vw, 2em);
+    opacity: 0;
+    animation: fadeInOut 3s ease forwards;
+    margin: 0;
+    text-align: center;
+    padding: 0 2.5vw;
+}
+
+.intro-screen h2 {
+    font-weight: 400;
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    color: white;
+    font-size: clamp(1.5em, 5vw, 2em);
+    opacity: 0;
+    animation: fadeInOut 3s ease forwards;
+    margin: 0;
+    text-align: center;
+    padding: 0 2.5vw;
+}
+
+@keyframes fadeInOut {
+    0%, 50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+#about {
+    max-width: 100%;
+    margin: 2.5vh auto;
+    color: #f2f2f2;
+    padding: 2.5vh 2.5vw;
+    font-family: "Raleway", sans-serif;
+    box-sizing: border-box;
+}
+
+#about img {
+    display: block;
+    margin: 0 auto 2.5vh;
+    height: auto;
+    width: 130px;
+    max-width: 100%;
+    border: 2px solid white;
+    filter: grayscale(100%);
+    transition: filter 0.7s ease-in-out, background-color 0.7s ease-in-out;
+}
+
+@media (min-width: 768px) {
+    #about {
+        max-width: 800px;
+        padding: 3.75vh 3vw;
+        bottom: 1.5vh;
+    }
+
+    #about img {
+        position: relative;
+        float: right;
+        margin: 0 0 2.5vh 2.5vw;
+    }
+}
+
+#about img:hover {
+    filter: grayscale(0%);
+    background-color: rgba(255, 0, 0, 0.5);
+}
+
+.dark-mode #about img{
+    border-color: black;
+}
+
+#about p {
+    line-height: 1.2;
+    text-align: justify;
+    margin-bottom: 0.625vh;
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    color: white;
+    font-size: 13px;
+}
+
+@media (max-width: 480px) {
+  #about p {
+    font-size: 12px;
+  }
+}
+
+.dark-mode #about p{
+    color: black;
+}
+
+.strong {
+    margin-bottom: 1.25vh;
+}
+
+#about h2 {
+    color: white;
+    margin-bottom: 1.875vh;
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 14px;
+}
+
+@media (max-width: 480px) {
+  #about h2 {
+    font-size: 14px;
+  }
+}
+
+#about a {
+    color: #d9534f;
+    text-decoration: none;
+}
+
+@media (max-width: 480px) {
+  #about a {
+    font-size: 12px;
+  }
+}
+
+#about ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+#about li {
+    line-height: 1.2;
+    margin-bottom: 0.875vh;
+    font-size: 13px;
+}
+
+@media (max-width: 480px) {
+  #about li {
+    font-size: 12px;
+  }
+}
+
+.dark-mode #about li::before {
+    color: black;
+}
+
+#about li::before {
+    content: '• ';
+    color: white;
+    font-weight: bold;
+}
+
+.dark-mode #about {
+    color: black;
+}
+
+.dark-mode #about h2 {
+    color: black;
+}
+
+.dark-mode #about a {
+    color: black;
+}
+
+.dark-mode #about ul {
+    color: black;
+}
+
+#contact {
+    max-width: 100%;
+    margin: 2.5vh auto;
+    color: white;
+    padding: 2.5vh 2.5vw;
+    font-size: 14px;
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+    #contact {
+        max-width: 800px;
+        padding: 3.75vh 3vw;
+    }
+}
+
+.dark-mode #contact {
+    color: black;
+}
+
+#contact p {
+    line-height: 1.6;
+    text-align: justify;
+    margin-bottom: 2.5vh;
+}
+
+#contact img {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 1.875vh;
+    margin-right: 1.25vw;
+    vertical-align: middle;
+    z-index: 999;
+}
+
+:not(.dark-mode) #contact img {
+    filter: invert(100%);
+}
+
+.dark-mode #contact img {
+    filter: none;
+}
+
+#contact a {
+    color: inherit;
+    text-decoration: none;
+    word-break: break-word;
+}
+
+@media (max-width: 480px) {
+  #contact a {
+    font-size: 11px;
+  }
+}
+
+#contact a:hover {
+    text-decoration: underline;
+}
+
+.progress {
+    width: 100%;
+    background-color: white;
+    margin-bottom: 1.25vh;
+    font-family: "Raleway", sans-serif;
+}
+
+.progress-bar {
+    height: 20px;
+    line-height: 20px;
+    color: white;
+    text-align: center;
+    background-color: #3c3d3d;
+    margin-top: 1vh;
+}
+
+.dark-mode .progress {
+    background-color: black;
+}
+
+.dark-mode .progress-bar {
+    background-color: grey;
+}
+
+.skill {
+    font-weight: bold;
+}
+
+@media (max-width: 480px) {
+  .skill {
+    font-size: 12px;
+  }
+}
+
+#projects {
+    max-width: 100%;
+    color: #f2f2f2;
+    padding: 2.5vh 2.5vw;
+    font-family: "Raleway", sans-serif;
+    box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+    #home {
+        max-width: 800px;
+        padding: 3.75vh 3vw;
+    }
+
+    #projects {
+        max-width: 800px;
+        padding: 3.75vh 3vw;
+    }
+}
+
+#projects > *:last-child {
+    margin-bottom: 0;
+}
+
+#projects h2 {
+    font-family: "Raleway", sans-serif;
+    font-size: clamp(1.5em, 5vw, 2em);
+    font-weight: 500;
+    margin-bottom: 3.75vh;
+}
+
+@media (max-width: 480px) {
+  #projects h2 {
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
+
+@media (max-width: 480px) {
+  h4 {
+    font-size: 14px;
+    font-weight: normal;
+  }
+}
+
+#projects img {
+    height: auto;
+    width: 100%;
+    max-width: 220px;
+    margin-bottom: 3.75vh;
+}
+
+@media (min-width: 768px) {
+    #projects h2 {
+        margin-bottom: 7.5vh;
+    }
+
+    #projects img {
+        height: 150px;
+        width: 220px;
+        margin-bottom: 7.5vh;
+    }
+}
+
+.dark-mode #projects {
+    color: black;
+}
+
+#projects a {
+    font-family: "Raleway", sans-serif;
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+@media (max-width: 480px) {
+  #projects a {
+    font-size: 12px;
+  }
+}
+
+.button-text {
+    font-size: 2px;
+}
+
+#projects p {
+    line-height: 1.6;
+    text-align: justify;
+}
+
+@media (max-width: 480px) {
+  #projects p {
+    font-size: 12px;
+  }
+}
+
+.dark-mode #projects a {
+    color: black;
+}
+
+.project-buttons {
+    display: flex;
+    margin-top: 1.25vh;
+    margin-bottom: 2.5vh;
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    flex-wrap: wrap;
+    visibility: visible;
+}
+
+@media (min-width: 768px) {
+    .project-buttons {
+        position: absolute;
+        top: 8%;
+        right: 0;
+        width: auto;
+        flex-wrap: nowrap;
+        max-width: 800px;
+        margin: 0;
+    }
+}
+
+.project-buttons button {
+    background-color: #b3b3b3;
+    border: none;
+    color: black;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-family: "Raleway", sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    margin: 0.5vh 0.75vw;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    border-radius: 10%;
+}
+
+@media (min-width: 768px) {
+    .project-buttons button {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
+}
+
+
+.dark-mode .project-buttons button {
+    background-color: #5c5e5e;
+    color: white;
+}
+
+.project-buttons button:hover {
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50;
+}
+
+/* Video link styling */
+.video-link-container {
+  margin-bottom: 3.125vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.video-link-button {
+  background-color: #1b1b1b;
+  color: white;
+  padding: 1vh 1.5vw;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.video-link-button:hover {
+  background-color: #3e3d3d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.video-icon {
+  margin-right: 1.25vw;
+  font-size: 14px;
+}
+
+.video-note {
+  font-size: 14px;
+  color: #d1d1d1;
+  margin-top: 1.25vh;
+  font-style: italic;
+}
+
+@media (max-width: 480px) {
+  .video-note {
+    font-size: 10px;
+  }
+}
+
+/* Dark mode adjustments */
+.dark-mode .video-link-button {
+  background-color: #ddd;
+  color: black;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .video-link-button:hover {
+  background-color: #eee;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .video-note {
+  color: #666;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .video-link-button {
+    width: 60%;
+    justify-content: center;
+    padding: 1.25vh 2vw;
+  }
+}
+
+
+/* Responsive adjustments for mobile devices */
+@media (max-width: 480px) {
+    .line {
+        top: 2.5vh;
+        left: 2.5vw;
+        right: 2.5vw;
+        bottom: 2.5vh;
+    }
+
+    .content {
+        padding: 3.75vh 3.125vw;
+    }
+
+    #shaderCanvas {
+        top: 2.5vh;
+        left: 2.5vw;
+        right: 2.5vw;
+        bottom: 2.5vh;
+        width: calc(100% - 5vw);
+        height: calc(100% - 5vh);
+    }
+
+    .bottom-text {
+        font-size: 12px;
+    }
+
+    #home, #about, #projects {
+        padding: 4.375vh 4.375vw;
+    }
+
+    #contact {
+        padding: 3.125vh 3.125vw;
+        top: 15vh;
+    }
+
+
+    .project-buttons button {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+
+    .project-buttons {
+        right: 0.625vw;
+    }
+}
+
+/* Tablet adjustments */
+@media (min-width: 481px) and (max-width: 767px) {
+    .line {
+        top: 2.5vh;
+        left: 2.5vw;
+        right: 2.5vw;
+        bottom: 2.5vh;
+    }
+
+    .content {
+        padding: 3.75vh 3.125vw;
+    }
+
+    #shaderCanvas {
+        top: 2.5vh;
+        left: 2.5vw;
+        right: 2.5vw;
+        bottom: 2.5vh;
+        width: calc(100% - 5vw);
+        height: calc(100% - 5vh);
+    }
+
+    .bottom-text {
+        font-size: 12px;
+    }
+
+    #home, #about {
+        padding: 4.375vh 4.375vw;
+        font-size: 12px;
+        bottom: 1.875vh;
+    }
+
+    #contact {
+        padding: 3.125vh 3.125vw;
+        overflow: hidden;
+    }
+
+    #home {
+        overflow: hidden;
+    }
+
+    .project-buttons button {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+
+    .project-buttons {
+        right: 0.625vw;
+    }
+
+    #projects h2 {
+        font-size: 16px;
+        font-weight: bold;
+  }
+
+    .video-link-button {
+        font-size: 12px;
+        padding: 1.25vh 1.25vw;
+    }
+
+    .video-note {
+        font-size: 9px;
+    }
+
+    #projects {
+        bottom: -5vh;
+        padding-left: 4.375vw;
+        padding-bottom: 4.375vh;
+        padding-right: 4.375vw;
+    }
+
+    #projects p, #projects a {
+        font-size: 12px;
+    }
+
+    #about {
+        bottom: -5vh;
+        padding-left: 4.375vw;
+        padding-bottom: 4.375vh;
+        padding-right: 4.375vw;
+    }
+
+    #about p, #about a {
+        font-size: 12px;
+    }
+
+
+    #projects h2 {
+        font-size: 14px;
+    }
+
+    .tab-content {
+        max-height: 50vh;
+    }
+}
+
+/* Ensure all content is readable on small devices */
+@media (max-width: 767px) {
+    .tab-content {
+        bottom: -10vh; /* Reduce bottom spacing */
+        position: absolute;
+        margin-top: 1.25vh; /* Slightly reduce top margin */
+        left: 0; /* Remove left positioning */
+        right: 0; /* Remove right positioning */
+        max-width: 100%; /* Full width */
+        padding: 0 1.875vw; /* Add some side padding */
+    }
+
+    .active-tab {
+        position: relative;
+        margin-top: 1.25vh; /* Consistent with tab-content */
+    }
+}
+
+/* Minimalist Square Buttons for Mode Toggle */
+.mode-toggle-container {
+  position: fixed;
+  bottom: 3.125vh;
+  left: 3.125vw;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25vh;
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .mode-toggle-container {
+        bottom: 2.625vh;
+        left: 0.5vw;
+        z-index: 1000;
+    }
+}
+/* Base styles for both buttons */
+.mode-button {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  cursor: pointer;
+  border: 1px solid white;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: transparent;
+  border-radius: 0; /* Sharp corners for squares */
+  position: relative;
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .mode-button {
+        width: 12px;
+        height: 12px;
+    }
+}
+
+/* Dark mode button (black square with white border) */
+.dark-button {
+  background-color: black;
+  border: 1px solid white;
+}
+
+/* Light mode button (white square) */
+.light-button {
+  background-color: white;
+  border: 1px solid white;
+}
+
+/* Active state styling */
+.mode-button.active {
+  transform: scale(1.2); /* Slightly larger when active */
+}
+
+/* Button hover effect */
+.mode-button:hover {
+  transform: scale(1.05);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+.mode-button.active:hover {
+  transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark mode adjustments */
+.dark-mode .dark-button {
+  background-color: black;
+  border: 1px solid white;
+}
+
+.dark-mode .light-button {
+  background-color: white;
+  border: 1px solid black;
+}
+
+/* Focus styles for accessibility */
+.mode-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+.dark-mode .mode-button:focus {
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .mode-toggle-container {
+    bottom: 2.625vh;
+    left: 1.2vw;
+  }
+
+  .mode-button {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mode-toggle-container {
+    bottom: 0.5vh;
+    right: 0.5vw;
+    z-index: 1000;
+    flex-direction: row;
+    gap: 1vh;
+  }
+
+  .mode-button {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+    #about {
+        bottom: 1.875vh;
+    }
+
+    #projects {
+        bottom: 1.875vh;
+    }
+
+    #home {
+        bottom: 2.5vh;
+    }
+}
+
+/* Custom scrollbar styling */
+.tab-content::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.tab-content::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.tab-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.tab-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Dark mode scrollbar adjustments */
+.dark-mode .tab-content::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.dark-mode .tab-content::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .tab-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Firefox scrollbar styling */
+.tab-content {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .tab-content {
+  scrollbar-color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.05);
+}
+
+/* Apply to any other elements that need scrolling */
+#about::-webkit-scrollbar,
+#projects::-webkit-scrollbar,
+#contact::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+#about::-webkit-scrollbar-track,
+#projects::-webkit-scrollbar-track,
+#contact::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+#about::-webkit-scrollbar-thumb,
+#projects::-webkit-scrollbar-thumb,
+#contact::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+#about::-webkit-scrollbar-thumb:hover,
+#projects::-webkit-scrollbar-thumb:hover,
+#contact::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.dark-mode #about::-webkit-scrollbar-track,
+.dark-mode #projects::-webkit-scrollbar-track,
+.dark-mode #contact::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.dark-mode #about::-webkit-scrollbar-thumb,
+.dark-mode #projects::-webkit-scrollbar-thumb,
+.dark-mode #contact::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode #about::-webkit-scrollbar-thumb:hover,
+.dark-mode #projects::-webkit-scrollbar-thumb:hover,
+.dark-mode #contact::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+#about, #projects, #contact {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode #about,
+.dark-mode #projects,
+.dark-mode #contact {
+  scrollbar-color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.05);
+}
